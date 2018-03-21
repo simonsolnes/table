@@ -63,7 +63,7 @@ class Table():
                 retline.append(' ' + str(self.just(title, width, just)) + ' ')
             retval.append(bar + self.join(bar, retline) + bar)
                 
-        for line in self.data[1:]:
+        for line in self.data[1:] if self.header else self.data:
             retline = []
             for item, width, just in zip(line, self.lens, self.datajust):
                 retline.append(' ' + str(self.just(item, width, just)) + ' ')
