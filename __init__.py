@@ -59,7 +59,7 @@ class Table():
         
         if self.header:
             retline = []
-            for title, width, just in zip(data[0], self.lens, self.headerjust):
+            for title, width, just in zip(self.data[0], self.lens, self.headerjust):
                 retline.append(' ' + str(self.just(title, width, just)) + ' ')
             retval.append(bar + self.join(bar, retline) + bar)
                 
