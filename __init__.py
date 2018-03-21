@@ -11,7 +11,6 @@ class Table():
         for line in self.data:
             while len(line) < self.cols:
                 line.append('')
-        self.data = [[' ' + item + ' ' for item in line] for line in self.data]
 
         if isinstance(datajust, str):
             self.datajust = [datajust for i in range(self.cols)]
@@ -51,7 +50,7 @@ class Table():
 
         pre = '\x1b[2;38;48m'
         post = '\x1b[0m'
-        top = pre + '┌' + self.join('', [('─' * l) + '┬'  for l in self.lens])[:-1] + '┐' + post
+        top = pre + '┌' + self.join('', [('─' * (l + 2)) + '┬'  for l in self.lens])[:-1] + '┐' + post
         retval = [top]
 
         bar = pre + '│' + post
@@ -61,17 +60,17 @@ class Table():
         if self.header:
             retline = []
             for title, width, just in zip(data[0], self.lens, self.headerjust):
-                retline.append(self.just(title, width, just))
+                retline.append(' ' + str(self.just(title, width, just)) + ' ')
             retval.append(bar + self.join(bar, retline) + bar)
                 
         for line in self.data[1:]:
             retline = []
             for item, width, just in zip(line, self.lens, self.datajust):
-                retline.append(self.just(item, width, just))
+                retline.append(' ' + str(self.just(item, width, just)) + ' ')
             retval.append(bar + self.join(bar, retline) + bar)
-        bot = pre + '└' + self.join('', [('─' * l) + '┴'  for l in self.lens])[:-1] + '┘' + post
+        bot = pre + '└' + self.join('', [('─' * (l + 2)) + '┴'  for l in self.lens])[:-1] + '┘' + post
         retval.append(bot)
-        hed = pre + '├' + self.join('', [('─' * l) + '┼'  for l in self.lens])[:-1] + '┤' + post
+        hed = pre + '├' + self.join('', [('─' * (l + 2)) + '┼'  for l in self.lens])[:-1] + '┤' + post
         retval.insert(2, hed)
                 
 
