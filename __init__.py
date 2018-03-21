@@ -8,8 +8,6 @@ class Table():
             while len(line) < self.cols:
                 line.append('')
         self.lens = [max([len(item) for item in row]) for row in zip(*self.data)]
-        print(self.lens)
-
 
     def __str__(self):
         top = '┌' + ''.join([('─' * l) + '┬'  for l in self.lens])[:-1] + '┐'
@@ -31,14 +29,15 @@ class Table():
 
 
 
+if __name__ == '__main__':
 
-data = [
-    ['head', 'ehitfr', 'head-3-htfirf', 'h', 'tf'],
-    ['line1-trio', 'line-1-col-2', 'eshi', 'line-1-col-4', 'tfe'],
-    ['rtftf', 'line-2-col-2', 'thri', 'line-2-col-4']
-]
+    data = [
+        ['head', 'ehitfr', 'head-3-htfirf', 'h', 'tf'],
+        ['line1-trio', 'line-1-col-2', 'eshi', 'line-1-col-4', 'tfe'],
+        ['rtftf', 'line-2-col-2', 'thri', 'line-2-col-4']
+    ]
 
 
-t = Table(data)
+    t = Table(data)
 
-print(t)
+    print(t)
